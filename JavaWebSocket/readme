@@ -1,0 +1,2 @@
+JavaEE7中增加了JSR-356：Java API for websocket规范;Tomcat从7.0.47开始支持JSR-356.
+所以，如果想使用websocket，需用jdk1.7、tomcat7.0.47以上的版本
