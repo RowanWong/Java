@@ -1,0 +1,40 @@
+1. 使用Maven搭建SpringMVC项目
+	web.xml: 配置字符编码格式、SpringMVC配置、404和500的错误页面
+	springmvc-servlet.xml: 注解、包扫描、视图解析...
+	
+	
+2.注解说明-- 示例见MyController
+	2.1 RequestMapping属性(将请求地址映射到具体的处理类或方法)
+		value: 指定请求的实际url
+	 		value="/get"  "/get/{userid}"   {"/get","/fetch"}
+		method：指定请求的method类型， GET、POST、PUT、DELETE等
+	 		method={RequestMethod.GET,RequestMethod.POST}
+	 	params：指定request中必须包含某些参数值是，才让该方法处理
+			params="action=del"，请求参数包含“action=del”,如：http://localhost:8080/SpringMVC?action=del
+		headers：指定request中必须包含某些指定的header值，才能让该方法处理请求。
+			headers="Accept=application/json",请求头中必须有“Accept =application/json”参数才可匹配
+			
+	2.2 @RequestParam(绑定单个请求参数值)
+		value:参数名字
+		required:是否必须，默认true
+		defalutValue:默认值，设置该参数时，required设为false
+	
+	2.3 @PathVariable(将请求URL中的模板变量映射到功能方法的参数中)
+		与 value="/get/{userid}"综合使用，参照handle方法示例
+	
+	2.4 @ModelAttribute(在@RequestMapping执行前调用，单独使用的情况很少见，一般用来封装获取前端传过来的参数)
+	2.5 sessionAttribute(session周期内跨请求访问，在多个请求中共享属性信息)
+	
+	2.6 @Responsebody与@RequestBody
+		@Responsebody表示该方法的返回结果直接写入HTTP response body中。一般在异步获取数据时使用，在使用@RequestMapping后，返回值通常解析为跳转路径，加上@Responsebody后返回结果不会被解析为跳转路径，而是直接写入HTTP response body中。比如异步获取json数据，加上@Responsebody后，会直接返回json数据。
+		@RequestBody将HTTP请求正文插入方法中,使用适合的HttpMessageConverter将请求体写入某个对象。
+	
+	
+3. 表单提交参数获取 -- post请求
+	3.1 直接通过方法中的形参获取: addUser(String userName);
+	3.2 通过HTTPServletRequest接收： request.getParameter("userName");
+	3.3 通过实体bean接收表单数据：addUser(User user);  
+
+4. 拦截器
+	使用场景：日志记录（访问量 PV等）、权限检查（如登录检测）、性能监控（记录处理响应时间）等，符合横切关注点的所有功能都可以放入拦截器实现
+	
