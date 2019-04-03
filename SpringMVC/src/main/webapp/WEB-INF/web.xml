@@ -4,9 +4,9 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
     <!--
-        源码：spring-web.jar 
-        功能：字符集过滤器，设置编码集为UTF-8，解决POST的中文乱码问题。
-        参数说明：
+        	源码：spring-web.jar 
+        	功能：字符集过滤器，设置编码集为UTF-8，解决POST的中文乱码问题。
+        	参数说明：
             encoding：request的编码集(request.setCharacterEncoding("UTF-8"))
             forceEncoding：默认为false设置为true，response的编码集也强制转变成UTF-8(response.setCharacterEncoding("UTF-8"))
     -->
