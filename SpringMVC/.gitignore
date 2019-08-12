@@ -1,4 +1,11 @@
-/.classpath
-/.project
-/.settings/
-/target/
+# Eclipse project file
+.classpath
+.settings
+target/
+.project
+*.log
+
+# Java class files
+*.class
+
+# Local config file

@@ -1,21 +1,11 @@
-#Eclipse Project Files
-.classpath  		
-.project  		
-.settings/ 		
-.myeclipse		
-.metadata		
-.mymetadata		
-.log
-		
-# Java class files		
-.class		
-		
-# Local configuration file (sdk path, etc)		
-local.properties		
-		
-#Build Artifacts    		
-.gradle/  		
-build/  		
-target/  		
-bin/  		
-dependency-reduced-pom.xml		
+# Eclipse project file
+.classpath
+.settings
+target/
+.project
+*.log
+
+# Java class files
+*.class
+
+# Local config file
