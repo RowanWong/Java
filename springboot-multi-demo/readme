@@ -4,4 +4,24 @@
 3.修改pom.xml文件，修改依赖关系
 	3.1 主工程的pom文件引入通用的配置与依赖，比如版本控制、log4j等
 	3.2 子模块根据需求建立依赖关系
-	3.3 对外提供访问的web项目对应一个子模块，注意pom文件中的build
+	3.3 对外提供访问的web项目对应一个子模块，注意pom文件中的build(web模块)
+	<build>
+	<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<!-- 指定main class 为全局的唯一入口 -->
+					<mainClass>cn.im.demo.Application</mainClass>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+						<!--	将依赖包统一打包至生成的jar包中 -->
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
