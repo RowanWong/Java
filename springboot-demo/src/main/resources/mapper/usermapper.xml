@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!--namespace 路径 指向dao层接口-->
+<mapper namespace="cn.im.repository.UserMapper" >
+  <sql id="Base_Column_List" >
+  id,name,code,city_id,im_city_id,parent_id,clevel,pub_code
+  </sql>
+          
+  <!--resultType 指向entity中对应的实体-->
+  <select id="getUser" parameterType="map" resultType="cn.im.domain.User">
+    select  <include refid="Base_Column_List"></include>
+    from IM_SM_CITY_INFO
+  </select>
+ 
+</mapper>
