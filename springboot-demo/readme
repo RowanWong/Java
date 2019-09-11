@@ -15,7 +15,12 @@ API文档工具：swagger2.0
 	参考：https://www.cnblogs.com/jtlgb/p/8532433.html
 	/springboot-demo/src/main/java/cn/im/tool/Swagger2.java
 
-
+三、整合Mybatis
+	参考：https://www.jianshu.com/p/c44dc639cb93
+	1.在pom.xml中添加mybatis依赖
+	2.在application.yml中配置数据源与Mybatis
+	3.根据业务编写实体类与mapper.xml文件
+	
 其他
 	初始化加载
 	自定义异常处理

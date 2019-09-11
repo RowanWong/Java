@@ -12,9 +12,9 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.opslab.helper.FileHelper;
-import com.opslab.util.FileUtil;
-import com.opslab.util.FileUtilTest;
+//import com.opslab.helper.FileHelper;
+//import com.opslab.util.FileUtil;
+//import com.opslab.util.FileUtilTest;
 
 public class FileUtilsTest {
 
@@ -38,9 +38,9 @@ public class FileUtilsTest {
 	@Test
 	public void testIo(){
 		File file = new File(PATH+File.separator+FILENAME);
-		System.out.println(FileUtil.createFile(file));
-		System.out.println(FileUtil.write(file, "think diffient."));
-		System.out.println(FileUtil.appendLine(file, "just do it."));
+//		System.out.println(FileUtil.createFile(file));
+//		System.out.println(FileUtil.write(file, "think diffient."));
+//		System.out.println(FileUtil.appendLine(file, "just do it."));
 	}
 	
 //	@Test

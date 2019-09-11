@@ -74,27 +74,6 @@ public class StringTool {
 		return str;
 	}
 
-	/**
-	 * 隐藏手机号
-	 * 
-	 * @return
-	 */
-	public static String nonePhoneNo(String phoneNo) {
-
-		if (StringUtils.isNotBlank(phoneNo) && phoneNo.length() == 11) {
-			char[] pChar = phoneNo.toCharArray();
-			phoneNo = "";
-			for (int index = 0; index < pChar.length; index++) {
-				if (index >= 3 && index <= 6) {
-					phoneNo += "*";
-				} else {
-					phoneNo += pChar[index];
-				}
-			}
-		}
-
-		return phoneNo;
-	}
 
 	/*
 	 * 将字符串编码成16进制数字,适用于所有字符（包括中文）
@@ -260,27 +239,6 @@ public class StringTool {
 		}
 		
 		return str;
-	}
-
-	/**
-	 * 是否是微信自带浏览器打开
-	 * 
-	 * @param User_Agent
-	 *            用户http请求头
-	 * @return
-	 */
-	public static boolean isWeiXinOpen(String User_Agent) {
-
-		if (StringUtils.isNotBlank(User_Agent)) {
-			User_Agent = User_Agent.toUpperCase();
-
-			if (User_Agent.indexOf("MICROMESSENGER") != -1
-					|| User_Agent.indexOf("WINDOWS PHONE") != -1) {
-				return true;
-			}
-		}
-
-		return false;
 	}
 
 

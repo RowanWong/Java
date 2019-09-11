@@ -34,7 +34,7 @@ public class HttpTool {
 	 * @return
 	 */
 	public static String HttpConnectPost(String urlString, String param, String code, int timeout) {
-		String result;
+		String result = null;
 		URL url;
 		HttpURLConnection httpConn;
 		OutputStream out;
@@ -84,21 +84,16 @@ public class HttpTool {
 
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
-			return Mark.MARK_RE_FAIL_ME;
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 			System.out.println( "调用超时" );
-			return Mark.MARK_RE_FAIL_ME;
 		} catch (ProtocolException e) {
 			e.printStackTrace();
-			return Mark.MARK_RE_FAIL_ME;
 		} catch (IOException e) {
 			e.printStackTrace();
-			return Mark.MARK_RE_FAIL;
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println( "调用超时" );
-			return Mark.MARK_RE_TIMEOUT;
 		}
 
 		return result;
