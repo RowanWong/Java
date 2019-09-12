@@ -12,12 +12,22 @@ import java.util.ResourceBundle;
 
 public class PropertyUtils {
 	
+    /**
+     * 从系统属性文件中获取相应的值
+     *
+     * @param key key
+     * @return 返回value
+     */
+    public final static String key(String key) {
+        return System.getProperty(key);
+    }
+	
 	/***
 	 * 通过ResourceBundle读取配置文件中指定key的值
 	 * @param name_path 配置文件的 文件名和路径
 	 * @param key 配置文件中的值 key不存在，则返回“null”
 	 */
-	public static String readProperty(String name_path,String key){
+	public final static String readProperty(String name_path,String key){
 		ResourceBundle resources = ResourceBundle.getBundle(name_path);
 		if(resources.containsKey(key)){			
 			return resources.getString(key);
@@ -31,7 +41,7 @@ public class PropertyUtils {
 	 * @param namePath 配置文件的相对路径+文件名（无后缀）
 	 * @param key 配置文件中的值
 	 */
-	public static String readPropertyByKey(String namePath,String key){
+	public final static String readPropertyByKey(String namePath,String key){
 		String target = null;
 		Properties pro = new Properties();
 		try {
@@ -48,7 +58,7 @@ public class PropertyUtils {
 	 * @Description: 读取配置文件至map中
 	 * @param pathName 文件路径
 	 */
-	public static Map ReadAllProperties(String pathName) {
+	public final static Map ReadAllProperties(String pathName) {
 		Map<String, String> pro = null;
 		Properties properties = new Properties();
 
@@ -72,7 +82,7 @@ public class PropertyUtils {
 	 * @param result 待保存的键值对
 	 * @param note  对保存内容的注释
 	 */
-	public static void writeToProperties(String pathName, Map<String, String> result,String note) {
+	public final static void writeToProperties(String pathName, Map<String, String> result,String note) {
 		Properties properties = new Properties();
 		try {
 			pathName = Thread.currentThread().getContextClassLoader().getResource("").getPath()+pathName;

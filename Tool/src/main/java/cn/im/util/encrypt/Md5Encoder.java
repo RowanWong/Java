@@ -1,4 +1,4 @@
-package cn.im.util;
+package cn.im.util.encrypt;
 
 import java.security.MessageDigest;
 

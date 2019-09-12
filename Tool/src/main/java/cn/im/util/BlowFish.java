@@ -202,19 +202,6 @@ public class BlowFish {
 	   return BlowFish.byteToString(value);
 	 }
 	
-//	public static void main(String[] args) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, UnsupportedEncodingException {
-//		String key="qqRoomMobile";
-//		String mingwen = "Aa_123456";
-//		
-//		String jiami = BlowFish.encryption(mingwen, key); 
-//		System.out.println("--jiami=="+jiami);
-//		
-//		String jiemi = BlowFish.decryption(jiami, key);
-//		System.out.println("--jiemi=="+jiemi);
-//		
-//		String bytetostring = BlowFish.stringToHex(key);
-//		System.out.println(bytetostring);
-//	}
 
 
 }
