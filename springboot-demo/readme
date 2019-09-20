@@ -21,6 +21,9 @@ API文档工具：swagger2.0
 	2.在application.yml中配置数据源与Mybatis
 	3.根据业务编写实体类与mapper.xml文件
 	
+四、日志输出
+	springboot默认使用logback，将logback.xml放在resource下
+	
 其他
 	初始化加载
 	自定义异常处理

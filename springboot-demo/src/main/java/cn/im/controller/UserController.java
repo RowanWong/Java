@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import cn.im.domain.User;
 import cn.im.service.IUserService;
-import cn.im.tool.ErrCodeEnum;
-import cn.im.tool.ResultHelper;
+import cn.im.util.JacksonUtil;
+import cn.im.view.JsonResult;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 
@@ -60,7 +60,7 @@ public class UserController {
 	@RequestMapping(value = "/update", method = RequestMethod.POST ,consumes="application/json")
 	public Object updateUser(@RequestParam("id") String id, @RequestBody User user) {
 		userService.updateUser(id, user);
-		return ResultHelper.errCode(ErrCodeEnum.SUCCESS_200);
+		return JacksonUtil.toJson(JsonResult.success());
 
 	}
 
@@ -68,7 +68,7 @@ public class UserController {
 	@RequestMapping(value = "/del", method = RequestMethod.POST)
 	public Object delUser(@RequestParam(value = "id", required = true) String id,@RequestBody Map<String,String> map) {
 		System.out.println(map.keySet().toString());
-		return userService.delUser(id)?ResultHelper.errCode(ErrCodeEnum.SUCCESS_200):ResultHelper.errCode(ErrCodeEnum.NOT_FOUND_40001);
+		return userService.delUser(id)?JacksonUtil.toJson(JsonResult.success()):JacksonUtil.toJson(JsonResult.fail("40001", "failed"));
 
 	}
 

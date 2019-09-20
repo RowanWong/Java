@@ -13,6 +13,8 @@ spring:
 mybatis:
    type-aliases-package: com.im.BaseService.domain #扫描数据持久层对应的实体类 路径 Package级别
    mapper-locations: classpath:mapper/*.xml
+   
+
 # ----------------
 # Orphan comments:
 # ----------------

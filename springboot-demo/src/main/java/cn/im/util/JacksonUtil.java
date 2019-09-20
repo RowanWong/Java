@@ -1,5 +1,6 @@
 package cn.im.util;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParseException;
@@ -17,7 +18,7 @@ public class JacksonUtil {
 
     static {
         // 将null值不序列化
-        // objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+    	mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
 
         // 将null值转换为空串
         mapper.getSerializerProvider().setNullValueSerializer(new JsonSerializer<Object>() {
@@ -28,6 +29,10 @@ public class JacksonUtil {
             }
         });
     }
+
+    public static ObjectMapper getInstance() {  
+        return mapper;  
+    }  
 
     public static String toJson(Object obj)  {
         StringWriter sw = new StringWriter();
@@ -50,7 +55,7 @@ public class JacksonUtil {
         return sw.toString();
     }
 
-    public static <T> T JsonToBean(String jsonStr, Class<T> objClass)
+    public static <T> T toBean(String jsonStr, Class<T> objClass)
             throws JsonParseException, JsonMappingException, IOException {
         return mapper.readValue(jsonStr, objClass);
     }

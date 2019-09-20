@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.im.tool.ErrCodeEnum;
-import cn.im.tool.ResultHelper;
+import cn.im.util.JacksonUtil;
+import cn.im.view.JsonResult;
 
 /**
  * @ControllerAdvice结合@ExceptionHandler 全局异常的处理
@@ -29,10 +30,10 @@ public class GlobalExceptionHandler {
     	logger.error(e.getMessage(),e);
     	
     	if (e instanceof HttpMessageNotReadableException) {   //解析报文异常
-            return  ResultHelper.errCode(ErrCodeEnum.EXCEPTION_REQUESTMSG_41001);
+            return  JacksonUtil.toJson(JsonResult.errCode(ErrCodeEnum.EXCEPTION_REQUESTMSG_41001));
         }
     	
-    	return ResultHelper.errCode(ErrCodeEnum.EXCEPTION_UNKNOW);
+    	return JacksonUtil.toJson(JsonResult.errCode(ErrCodeEnum.EXCEPTION_UNKNOW));
     }
     
     
