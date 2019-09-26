@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.mysql.jdbc.StringUtils;
-
 import cn.im.domain.User;
 import cn.im.system.UserCache;
 

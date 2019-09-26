@@ -1,7 +1,11 @@
 package cn.im.controller;
 
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -69,7 +73,6 @@ public class UserController {
 	public Object delUser(@RequestParam(value = "id", required = true) String id,@RequestBody Map<String,String> map) {
 		System.out.println(map.keySet().toString());
 		return userService.delUser(id)?JacksonUtil.toJson(JsonResult.success()):JacksonUtil.toJson(JsonResult.fail("40001", "failed"));
-
 	}
 
 }

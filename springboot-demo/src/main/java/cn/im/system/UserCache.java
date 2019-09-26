@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
-import com.mysql.jdbc.StringUtils;
+import org.springframework.util.StringUtils;
 
 import cn.im.domain.User;
 
@@ -45,7 +45,7 @@ public class UserCache {
 	 */
 	public static boolean addUser(User user){
 		boolean flag = false;
-		if(!StringUtils.isNullOrEmpty(user.getId()) && !userMap.containsKey(user.getId())){
+		if(!StringUtils.isEmpty(user.getId()) && !userMap.containsKey(user.getId())){
 			userMap.put(user.getId(), user);
 			flag = true;
 		}

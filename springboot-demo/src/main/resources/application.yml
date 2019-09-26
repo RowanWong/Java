@@ -7,7 +7,7 @@ spring:
    datasource:
       url: jdbc:mysql://10.135.4.46:3306/im_cloud
       username: ims
-      password: Symbol_RAcimdb_1218
+      password: xxxx
 
 #Mybatis配置
 mybatis:
