@@ -11,11 +11,13 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.Proxy;
 import java.net.URL;
-import java.util.Base64;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.apache.commons.lang3.StringUtils;
 
-import cn.im.system.Mark;
+import cn.im.helper.CryptoHelper;
+import net.sf.json.JSONObject;
 
 
 /**
@@ -46,11 +48,8 @@ public class HttpTool {
 			url = new URL(urlString);
 			httpConn = (HttpURLConnection) url.openConnection();
 
-			if (timeout <= 0) {
-				timeout = 4;
-			}
-
-			timeout *= 1000;
+			timeout = timeout<=0 ? 4000:timeout*1000;
+			
 
 			//超时时间
 			httpConn.setConnectTimeout(timeout);
@@ -109,10 +108,13 @@ public class HttpTool {
 	public static String httpContentGet(String url, int timeout) throws IOException {
         // 拼凑get请求的URL字串，使用URLEncoder.encode对特殊和不可见字符进行编码
         URL getUrl = new URL(url);
+        
+
+//        Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("10.121.2.5",3128));  
+        
         // 根据拼凑的URL，打开连接，URL.openConnection函数会根据URL的类型，
         // 返回不同的URLConnection子类的对象，这里URL是一个http，因此实际返回的是HttpURLConnection
-        HttpURLConnection connection = (HttpURLConnection) getUrl
-                .openConnection();
+        HttpURLConnection connection = (HttpURLConnection) getUrl.openConnection();
         
         //超时时间
 		timeout= timeout<=0?4000:timeout*1000;
@@ -150,8 +152,7 @@ public class HttpTool {
         
         Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(host,port));  
 		
-        HttpURLConnection connection = (HttpURLConnection) getUrl
-                .openConnection(proxy);
+        HttpURLConnection connection = (HttpURLConnection) getUrl.openConnection(proxy);
         
         //设置超时时间
         timeout= timeout<=0?4000:timeout*1000;
@@ -174,6 +175,39 @@ public class HttpTool {
         
         return result;
     }
+	
+	
+	public static void main(String[] args) {
+		String appId="im";
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddHHmmss");
+		String time=sdf.format(new Date());
+		String pwd=" d7yht2hT";
+		pwd=appId+time+pwd;
+		pwd=CryptoHelper.md5(pwd);
+		JSONObject body=new JSONObject();
+		body.put("appId", appId);
+		body.put("sign", pwd);
+		body.put("time", time);
+		body.put("tableName", "IM_SM_COPY_SOURCE");
+		JSONObject cols=new JSONObject();
+		cols.put("RECORD_TIME", "2019-11-13 00:00:00");
+		cols.put("SESSION_ID", "1");
+		cols.put("LOGIN_ID", "tableName");
+		cols.put("SRC_URL", "tableName");
+		cols.put("KNLG_ID", "234");
+		cols.put("COPY_CONTENT", "tableName");
+		cols.put("IS_EDITED", "1");
+		cols.put("SEND_CONTENT", "tableName");
+		cols.put("LAST_USER_MSG", "tableName");
+		cols.put("CENTER_ID", "123");
+		cols.put("WND_TITLE", "tableName");
+		cols.put("PROC_PATH", "tableName");
+		cols.put("IS_CAPTURE", "1");
+		body.put("cols", cols);
+		String url="http://10.121.23.17:9090/imDataCenter/insert";
+		String result = HttpTool.HttpConnectPost(url, body.toString(), "utf-8", 8);
+		System.out.println(result);
+	}
 	
 
 }
