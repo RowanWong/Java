@@ -3,6 +3,7 @@ package cn.im.tool;
 import org.junit.Test;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 
 /**
  * 实现java bean、json对象、json字符串的相互转化
@@ -14,6 +15,7 @@ public class JsonTool {
 
 	/**
 	 * fastjson 使用说明：
+	 * 
 	 * <!-- 添加 fastjson 依赖 -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
@@ -33,13 +35,26 @@ public class JsonTool {
 		p.setId(1001);
 		p.setName("kevin");
 		
-		// 对象转化为json字符串
-		String jsonObj = JSON.toJSONString(p); 
-//		System.out.println(jsonObj);
+		// json对象、java对象 转化为 json字符串
+		String str = JSON.toJSONString(p); 
+		System.out.println("toJSONString: " + str);
 		
-		p = JSON.parseObject(obj, Person.class);
-		System.out.println(p);
-		System.out.println(p.toString());
+		//json字符串 ==> json对象、Java对象
+		Person p1 = JSON.parseObject(obj, Person.class);
+		JSONObject jsonObj = JSON.parseObject(obj);
+//		System.out.println(p1);
+//		System.out.println(jsonObj.toString());
+		
+		//java对象 ==> json对象
+		JSONObject jsonObj1 = (JSONObject) JSON.toJSON(p);
+		System.out.println("toJSON: " + jsonObj1);
+		
+		//json对象 ==> java对象
+		Person p2 = JSON.toJavaObject(jsonObj, Person.class);
+		System.out.println("toJavaObject: " + p2);
+		
+		
+		//JSON类之JSONArray()方法，实现json字符串转化为json对象数组或List<T>
 	}
 	
 	
