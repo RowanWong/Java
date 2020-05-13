@@ -36,7 +36,8 @@ public class Work {
 		String authType = "2";
 		String timeStamp = String.valueOf(System.currentTimeMillis());
 		String requestId = UUID.randomUUID().toString();
-		String callbackURL = "https://im.189.cn/faceDetect/hello";
+//		String callbackURL = "https://im.189.cn/faceDetect/hello";
+		String callbackURL = "https://ag1.imp.189.cn/faceDetect/rlhs/finish";
 		String paras = XXTeaUtil.encrypt((authType+callbackURL+requestId+timeStamp), "UTF-8", ByteFormat.toHex(appSecret.getBytes()));
 		String sign = HmacSha1Util.getSignature(appKey+format+version+paras,ByteFormat.toHex(appSecret.getBytes())).toUpperCase();
 
