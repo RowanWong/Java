@@ -1,4 +1,4 @@
-package cn.im.util;
+package cn.im.helper;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -8,7 +8,6 @@ import java.util.List;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -23,11 +22,10 @@ import net.sf.json.JSONObject;
  * @author Kevin
  *
  */
-public class JsonHelperTest {
+public class JsonHelper {
 	
 	
-//	public static String str = "{\"name\":\"kevin\",\"age\":22,\"birthDate\":\"Sep 12, 2019 12:41:59 PM\",\"cards\":[\"aa\",\"bb\",\"cc\"]}";
-	public static String str = "{\"name\":\"kevin\",\"age\":22,\"birthDate\":\"2019-9-12 12:41:59\",\"cards\":[\"aa\",\"bb\",\"cc\"]}";
+	public static String str = "{\"name\":\"kevin\",\"age\":22,\"birthDate\":\"Sep 12, 2019 12:41:59 PM\",\"cards\":[\"aa\",\"bb\",\"cc\"]}";
 	public static User user = new User("kevin",22,new Date(),Arrays.asList("aa","bb","cc"));
 
 	/**
@@ -39,8 +37,8 @@ public class JsonHelperTest {
 		Gson gson = new Gson();
 		
 		//对象转化为json串
-		System.out.println("gson Obj2Json:  "+gson.toJson(user));  
-		System.out.println("gson json2Obj:  " + gson.fromJson(str, User.class));
+		System.out.println(gson.toJson(user));  
+		System.out.println(gson.fromJson(str, User.class));
 	}
 	
 	
@@ -64,16 +62,14 @@ public class JsonHelperTest {
 	}
 	
 	/**
-	 * 依赖：jackson-core、jackson-databind
+	 * jackson-core
 	 * @throws IOException 
 	 */
 	@Test
-//	@Ignore
 	public void jacksonDemo() throws IOException {
 		//解析json
 		ObjectMapper mapper = new ObjectMapper();
 		JsonNode rootNode = mapper.readTree(str);
-		System.out.println("jsonParse:");
 		System.out.println(rootNode.get("name").asText());
 		System.out.println(rootNode.get("age").asInt());
 		System.out.println(rootNode.get("birthDate"));
@@ -85,7 +81,7 @@ public class JsonHelperTest {
 			System.out.println(cardNode.get(2).asText());
 		}
 		
-		//解析json串至对象    此处注意date格式     在date字段上添加注解：@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+		//解析json串至对象    此处注意date格式
 		ObjectMapper mapper1 = new ObjectMapper();
 		mapper1.disable(DeserializationFeature.UNWRAP_ROOT_VALUE);
 		User u = mapper1.readValue(str, User.class);
@@ -102,7 +98,6 @@ public class JsonHelperTest {
 class User{
 	private String name;
 	private int age;
-	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date birthDate;
 	private List<String> cards;
 	public User() {}

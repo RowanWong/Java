@@ -11,12 +11,7 @@ import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.io.FileUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
-import com.im.cloud.util.FileTool;
 
 public class ImageFile {
 
@@ -74,58 +69,58 @@ public class ImageFile {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value={"/upload"},method= RequestMethod.POST)
-	@ResponseBody
-	 public Map<String,String> uploadFile(MultipartFile file,HttpServletRequest request){
-		Map<String,String> res = new HashMap<String,String>();
-		String type = request.getParameter("type");
-		String code = "-1";
-		String msg = "";
-		System.out.println("type="+type);
-		if(file.isEmpty()){  
-			logger.info("file is null");
-			msg = "文件内容为空";
-        }else{
-        	//创建本地文件：目录+文件名
-        	String fileName = file.getOriginalFilename();
-    		File path = new File("${local_path}") ;
-    		if(!path.exists()) 
-    			path.mkdirs();
-    		long current = System.currentTimeMillis();
-    		String reName = "icso"+current+fileName.substring(fileName.lastIndexOf("."),fileName.length());
-    		File loc_file = new File(path.getAbsolutePath()+File.separator+reName);
-    		try {
-    			//复制文件到本地
-    			file.transferTo(loc_file);  
-    			if("imgType".equals(type) ){	//图片
-    				if( !isImage(loc_file)){
-        				loc_file.delete();
-        				msg = "请上传图片类型文件！";
-        			}else{
-        				code = "0";
-        				msg = loc_file.getAbsolutePath();
-        				res.put("fileName",fileName);
-        				res.put("reName",reName);
-        			}
-    			}else{							//文档文件
-    				//TODO 判断文件格式
-    				code = "0";
-    				msg = loc_file.getAbsolutePath();
-    				res.put("fileName",fileName);
-    				res.put("reName",reName);
-    			}
-    		} catch(Exception e){
-    			msg = "上传失败，请确认上传文件是否符合模板规范";
-    		};
-    		
-        }
-		
-		System.out.println(msg);
-		res.put("code", code);
-		res.put("msg", msg);
-		logger.info("uploadFile..."+res.toString());
-		return res;
-	}
+//	@RequestMapping(value={"/upload"},method= RequestMethod.POST)
+//	@ResponseBody
+//	 public Map<String,String> uploadFile(MultipartFile file,HttpServletRequest request){
+//		Map<String,String> res = new HashMap<String,String>();
+//		String type = request.getParameter("type");
+//		String code = "-1";
+//		String msg = "";
+//		System.out.println("type="+type);
+//		if(file.isEmpty()){  
+//			logger.info("file is null");
+//			msg = "文件内容为空";
+//        }else{
+//        	//创建本地文件：目录+文件名
+//        	String fileName = file.getOriginalFilename();
+//    		File path = new File("${local_path}") ;
+//    		if(!path.exists()) 
+//    			path.mkdirs();
+//    		long current = System.currentTimeMillis();
+//    		String reName = "icso"+current+fileName.substring(fileName.lastIndexOf("."),fileName.length());
+//    		File loc_file = new File(path.getAbsolutePath()+File.separator+reName);
+//    		try {
+//    			//复制文件到本地
+//    			file.transferTo(loc_file);  
+//    			if("imgType".equals(type) ){	//图片
+//    				if( !isImage(loc_file)){
+//        				loc_file.delete();
+//        				msg = "请上传图片类型文件！";
+//        			}else{
+//        				code = "0";
+//        				msg = loc_file.getAbsolutePath();
+//        				res.put("fileName",fileName);
+//        				res.put("reName",reName);
+//        			}
+//    			}else{							//文档文件
+//    				//TODO 判断文件格式
+//    				code = "0";
+//    				msg = loc_file.getAbsolutePath();
+//    				res.put("fileName",fileName);
+//    				res.put("reName",reName);
+//    			}
+//    		} catch(Exception e){
+//    			msg = "上传失败，请确认上传文件是否符合模板规范";
+//    		};
+//    		
+//        }
+//		
+//		System.out.println(msg);
+//		res.put("code", code);
+//		res.put("msg", msg);
+//		logger.info("uploadFile..."+res.toString());
+//		return res;
+//	}
 	
 
 }

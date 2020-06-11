@@ -75,7 +75,7 @@
 		</dependency>
 		
 		<!--axis2 begin-->
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.apache.axis2</groupId>
 			<artifactId>axis2</artifactId>
 			<version>${axis2.version}</version>
@@ -103,7 +103,7 @@
 			<groupId>org.apache.axis2</groupId>
 			<artifactId>axis2-transport-local</artifactId>
 			<version>${axis2.version}</version>
-		</dependency>
+		</dependency> -->
 	<!--axis2 end-->
 
 		<!-- <dependency> <groupId>com.0opslab</groupId> <artifactId>opslabJutil</artifactId> 
